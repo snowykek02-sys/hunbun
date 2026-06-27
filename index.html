@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ A Question ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ff9ec4, #ffd6e7);
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        background: rgba(255,255,255,0.9);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+        color: #ff4f81;
+        font-size: 2.8em;
+    }
+
+    p {
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    button {
+        padding: 15px 35px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.2s;
+        margin: 10px;
+    }
+
+    #yes {
+        background: #ff4f81;
+        color: white;
+    }
+
+    #yes:hover {
+        transform: scale(1.1);
+    }
+
+    #no {
+        background: #777;
+        color: white;
+        position: relative;
+    }
+
+    #message {
+        margin-top: 25px;
+        font-size: 24px;
+        color: #ff4f81;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Honey ❤️</h1>
+    <p>Will you be my girlfriend?</p>
+
+    <button id="yes">Yes ❤️</button>
+    <button id="no">No 😢</button>
+
+    <div id="message"></div>
+</div>
+
+<script>
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const message = document.getElementById("message");
+
+yesBtn.onclick = () => {
+    document.body.innerHTML = `
+    <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background:linear-gradient(135deg,#ff9ec4,#ffd6e7);
+        font-family:Arial,sans-serif;
+        text-align:center;
+        color:white;
+        flex-direction:column;">
+        <h1 style="font-size:4rem;">❤️ YAY!!! ❤️</h1>
+        <h2>I love you so much! 🥹💖</h2>
+        <p>You've made me the happiest person ever.</p>
+    </div>`;
+};
+
+function moveButton() {
+    const padding = 20;
+
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+</script>
+
+</body>
+</html>
