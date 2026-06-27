@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️ A Question ❤️</title>
+
+<title>Honey...</title>
 
 <style>
     body {
@@ -27,7 +28,7 @@
 
     h1 {
         color: #ff4f81;
-        font-size: 2.8em;
+        font-size: 3em;
     }
 
     p {
@@ -59,54 +60,75 @@
         color: white;
         position: relative;
     }
-
-    #message {
-        margin-top: 25px;
-        font-size: 24px;
-        color: #ff4f81;
-        font-weight: bold;
-    }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h1>Honey ❤️</h1>
+
+    <h1>Honey...</h1>
+
+    <!-- 🔥 Add your Todoroki GIF here -->
+    <img src="YOUR_TODOROKI_GIF_URL_HERE"
+         style="width:220px;border-radius:15px;margin:15px 0;">
+
     <p>Will you be my girlfriend?</p>
 
     <button id="yes">Yes ❤️</button>
     <button id="no">No 😢</button>
 
-    <div id="message"></div>
 </div>
 
 <script>
 const yesBtn = document.getElementById("yes");
 const noBtn = document.getElementById("no");
-const message = document.getElementById("message");
 
 yesBtn.onclick = () => {
+
+    // 💖 heart burst effect
+    for (let i = 0; i < 60; i++) {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "100vh";
+        heart.style.fontSize = (20 + Math.random() * 30) + "px";
+        heart.style.transition = "all 2.5s linear";
+        heart.style.pointerEvents = "none";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.style.top = "-10vh";
+            heart.style.opacity = "0";
+        }, 50);
+
+        setTimeout(() => heart.remove(), 3000);
+    }
+
     document.body.innerHTML = `
     <div style="
         display:flex;
         justify-content:center;
         align-items:center;
+        flex-direction:column;
         height:100vh;
         background:linear-gradient(135deg,#ff9ec4,#ffd6e7);
         font-family:Arial,sans-serif;
         text-align:center;
-        color:white;
-        flex-direction:column;">
-        <h1 style="font-size:4rem;">❤️ YAY!!! ❤️</h1>
-        <h2>I love you so much! 🥹💖</h2>
-        <p>You've made me the happiest person ever.</p>
+        color:white;">
+
+        <h1 style="font-size:4rem;">that's what I thought 😌</h1>
+
+        <h2>I love you so much ml</h2>
+
+        <p>Thank you</p>
+
     </div>`;
 };
 
 function moveButton() {
     const padding = 20;
-
     const maxX = window.innerWidth - noBtn.offsetWidth - padding;
     const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
