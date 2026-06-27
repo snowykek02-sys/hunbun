@@ -46,12 +46,7 @@
 
     <p>Will you be my girlfriend?</p>
 
-    <!-- GIF 1 -->
     <img src="https://media.giphy.com/media/3oKIPipgrovqOodyYo/giphy.gif"
-         style="width:200px;border-radius:15px;margin:10px;">
-
-    <!-- GIF 2 -->
-    <img src="https://media.giphy.com/media/3XZwxvubrEtE5z4HE0/giphy.gif"
          style="width:200px;border-radius:15px;margin:10px;">
 
     <div>
@@ -64,32 +59,48 @@
 const yesBtn = document.getElementById("yes");
 const noBtn = document.getElementById("no");
 
-function burstEffects() {
-    const emojis = ["❤️", "🎉", "💖", "✨"];
+function betterEffects() {
+    const emojis = ["❤️", "🎉", "✨", "💖", "🌟"];
 
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 120; i++) {
         const el = document.createElement("div");
         el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+        // 🌍 spawn anywhere on screen
+        const startX = Math.random() * window.innerWidth;
+        const startY = Math.random() * window.innerHeight;
+
         el.style.position = "fixed";
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.top = "100vh";
-        el.style.fontSize = (18 + Math.random() * 30) + "px";
-        el.style.transition = "all 2.5s ease-out";
+        el.style.left = startX + "px";
+        el.style.top = startY + "px";
+
+        // 🎨 random size
+        const size = 15 + Math.random() * 35;
+        el.style.fontSize = size + "px";
+
         el.style.pointerEvents = "none";
+        el.style.zIndex = 9999;
+        el.style.opacity = 1;
+
         document.body.appendChild(el);
 
-        setTimeout(() => {
-            el.style.top = "-10vh";
-            el.style.opacity = "0";
-        }, 50);
+        // 🚀 random movement direction (firework feel)
+        const xMove = (Math.random() - 0.5) * 400;
+        const yMove = (Math.random() - 0.5) * 400;
 
-        setTimeout(() => el.remove(), 3000);
+        setTimeout(() => {
+            el.style.transition = "all 2s ease-out";
+            el.style.transform = `translate(${xMove}px, ${yMove}px) rotate(${Math.random()*360}deg)`;
+            el.style.opacity = 0;
+        }, 10);
+
+        setTimeout(() => el.remove(), 2500);
     }
 }
 
 yesBtn.onclick = () => {
 
-    burstEffects();
+    betterEffects();
 
     setTimeout(() => {
         document.body.innerHTML = `
@@ -114,7 +125,7 @@ yesBtn.onclick = () => {
             <p>Thank you</p>
 
         </div>`;
-    }, 800);
+    }, 900);
 };
 
 noBtn.addEventListener("mouseover", () => {
