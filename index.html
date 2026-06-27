@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Honey...</title>
 
 <style>
@@ -26,122 +25,105 @@
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
-    h1 {
-        color: #ff4f81;
-        font-size: 3em;
-    }
-
-    p {
-        color: #555;
-        margin-bottom: 30px;
-    }
-
     button {
         padding: 15px 35px;
         font-size: 18px;
         border: none;
         border-radius: 12px;
         cursor: pointer;
-        transition: 0.2s;
         margin: 10px;
     }
 
-    #yes {
-        background: #ff4f81;
-        color: white;
-    }
-
-    #yes:hover {
-        transform: scale(1.1);
-    }
-
-    #no {
-        background: #777;
-        color: white;
-        position: relative;
-    }
+    #yes { background:#ff4f81; color:white; }
+    #no { background:#777; color:white; }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
     <h1>Honey...</h1>
-
-<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3llaTFvbGVpZWx4c2plNXVtamszcGM1Z2xqcTJhaTk5bmY3ZTY0byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3XZwxvubrEtE5z4HE0/giphy.gif"
-     style="width:220px;border-radius:15px;margin:15px 0;">
-    
 
     <p>Will you be my girlfriend?</p>
 
-    <button id="yes">Yes ❤️</button>
-    <button id="no">No 😢</button>
+    <!-- GIF 1 -->
+    <img src="https://media.giphy.com/media/3oKIPipgrovqOodyYo/giphy.gif"
+         style="width:200px;border-radius:15px;margin:10px;">
 
+    <!-- GIF 2 -->
+    <img src="https://media.giphy.com/media/3XZwxvubrEtE5z4HE0/giphy.gif"
+         style="width:200px;border-radius:15px;margin:10px;">
+
+    <div>
+        <button id="yes">Yes ❤️</button>
+        <button id="no">No 😢</button>
+    </div>
 </div>
 
 <script>
 const yesBtn = document.getElementById("yes");
 const noBtn = document.getElementById("no");
 
-yesBtn.onclick = () => {
+function burstEffects() {
+    const emojis = ["❤️", "🎉", "💖", "✨"];
 
-    // 💖 heart burst effect
-    for (let i = 0; i < 60; i++) {
-        const heart = document.createElement("div");
-        heart.innerHTML = "❤️";
-        heart.style.position = "fixed";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.top = "100vh";
-        heart.style.fontSize = (20 + Math.random() * 30) + "px";
-        heart.style.transition = "all 2.5s linear";
-        heart.style.pointerEvents = "none";
-        document.body.appendChild(heart);
+    for (let i = 0; i < 80; i++) {
+        const el = document.createElement("div");
+        el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.position = "fixed";
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.top = "100vh";
+        el.style.fontSize = (18 + Math.random() * 30) + "px";
+        el.style.transition = "all 2.5s ease-out";
+        el.style.pointerEvents = "none";
+        document.body.appendChild(el);
 
         setTimeout(() => {
-            heart.style.top = "-10vh";
-            heart.style.opacity = "0";
+            el.style.top = "-10vh";
+            el.style.opacity = "0";
         }, 50);
 
-        setTimeout(() => heart.remove(), 3000);
+        setTimeout(() => el.remove(), 3000);
     }
+}
 
-    document.body.innerHTML = `
-    <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        flex-direction:column;
-        height:100vh;
-        background:linear-gradient(135deg,#ff9ec4,#ffd6e7);
-        font-family:Arial,sans-serif;
-        text-align:center;
-        color:white;">
+yesBtn.onclick = () => {
 
-        <h1 style="font-size:4rem;">that's what I thought 😌</h1>
+    burstEffects();
 
-        <h2>I love you so much ml</h2>
+    setTimeout(() => {
+        document.body.innerHTML = `
+        <div style="
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            height:100vh;
+            background:linear-gradient(135deg,#ff9ec4,#ffd6e7);
+            font-family:Arial,sans-serif;
+            text-align:center;
+            color:white;">
 
-        <p>Thank you</p>
+            <h1 style="font-size:4rem;">that's what I thought 😌</h1>
 
-    </div>`;
+            <img src="https://media.giphy.com/media/3XZwxvubrEtE5z4HE0/giphy.gif"
+                 style="width:250px;border-radius:15px;margin:20px 0;">
+
+            <h2>I love you so much ml</h2>
+
+            <p>Thank you</p>
+
+        </div>`;
+    }, 800);
 };
 
-function moveButton() {
-    const padding = 20;
-    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
     noBtn.style.position = "absolute";
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
-}
-
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("touchstart", moveButton);
+});
 </script>
 
 </body>
